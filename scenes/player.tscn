@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://clgajmflwtvpl"]
+
+[ext_resource type="Texture2D" uid="uid://c24kkuruhx6nh" path="res://assets/charM.png" id="1_gelxs"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_jtyxv"]
+[ext_resource type="Texture2D" uid="uid://dvuy5m8c2raif" path="res://assets/charL.png" id="2_r2x7u"]
+[ext_resource type="Texture2D" uid="uid://ggmx60i17phe" path="res://assets/charR.png" id="3_y7b1q"]
+[ext_resource type="PackedScene" uid="uid://1xnhlsc8sc4x" path="res://scenes/gun.tscn" id="5_wppct"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwmlf"]
+atlas = ExtResource("1_gelxs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ms61j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwmlf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r2x7u")
+}],
+"loop": true,
+"name": &"run_l",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_y7b1q")
+}],
+"loop": true,
+"name": &"run_r",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ky81g"]
+size = Vector2(14, 23)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_jtyxv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ms61j")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_ky81g")
+
+[node name="RayCastR" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+
+[node name="RayCastL" type="RayCast2D" parent="."]
+target_position = Vector2(-10, 0)
+
+[node name="gun" parent="." instance=ExtResource("5_wppct")]
+position = Vector2(0, 4)

@@ -1,0 +1,7 @@
+res://scenes/game.tscn
+res://scripts/gun.gd
+res://scenes/player.tscn
+res://scenes/orb.tscn
+res://scenes/gun.tscn
+res://scenes/bullet.tscn
+res://scripts/player.gd

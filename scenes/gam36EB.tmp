@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://w5uba1pxiih"]
+
+[ext_resource type="PackedScene" uid="uid://clgajmflwtvpl" path="res://scenes/player.tscn" id="1_bu4hi"]
+[ext_resource type="Texture2D" uid="uid://cpd7w1dse4w12" path="res://assets/block.png" id="2_lnh7o"]
+[ext_resource type="Texture2D" uid="uid://ct24kfi3evnry" path="res://assets/stair.png" id="3_85dtq"]
+[ext_resource type="Script" path="res://scripts/orbs.gd" id="4_ia13r"]
+[ext_resource type="PackedScene" uid="uid://dxlxm15o76exu" path="res://scenes/orb.tscn" id="4_q21ue"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcrof"]
+texture = ExtResource("2_lnh7o")
+texture_region_size = Vector2i(32, 32)
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2cu5"]
+texture = ExtResource("3_85dtq")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_t4sju"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_fcrof")
+sources/1 = SubResource("TileSetAtlasSource_r2cu5")
+
+[node name="Game" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_bu4hi")]
+position = Vector2(192, -108)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_t4sju")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -131069, 1, 0, -196606, 1, 0, -131070, 1, 805306368, -196607, 1, 805306368, -262143, 1, 0, -262144, 1, 805306368, -327680, 1, 0, -262145, 0, 0, -262146, 0, 0, -262147, 0, 0, -262148, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65513, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65512, 0, 0, -65511, 0, 0, -131048, 0, 0, -196584, 0, 0, -262120, 0, 0, -327656, 0, 0, -327664, 0, 0, -327655, 1, 0, -393192, 1, 0, -458729, 1, 0, -458730, 0, 0, -458731, 0, 0, -458732, 0, 0, -458733, 0, 0, -458734, 0, 0, -393200, 1, 1610612736, -327665, 1, 1610612736, -458735, 1, 1610612736, -393199, 1, 1342177280, -393193, 1, 805306368, -262128, 0, 0)
+
+[node name="orbs" type="Node" parent="."]
+script = ExtResource("4_ia13r")
+
+[node name="orb" parent="orbs" instance=ExtResource("4_q21ue")]
+position = Vector2(366, -48)
+
+[node name="score_label" type="Label" parent="orbs"]
+offset_left = 467.0
+offset_top = -123.0
+offset_right = 507.0
+offset_bottom = -100.0
+text = "0 Orbs"

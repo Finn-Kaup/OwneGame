@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqlo5x4mh1dyg"]
+
+[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_t1ijy"]
+[ext_resource type="Texture2D" uid="uid://bqwkmtqwrgq4s" path="res://assets/orb.png" id="2_hax5c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tcjrf"]
+radius = 4.0
+
+[node name="bullet" type="Area2D"]
+top_level = true
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_t1ijy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tcjrf")
+
+[node name="Orb" type="Sprite2D" parent="."]
+scale = Vector2(0.368368, 0.368368)
+texture = ExtResource("2_hax5c")
+
+[node name="Orb2" type="Sprite2D" parent="."]
+scale = Vector2(0.308401, 0.308401)
+texture = ExtResource("2_hax5c")
+
+[node name="Orb3" type="Sprite2D" parent="."]
+scale = Vector2(0.254325, 0.254325)
+texture = ExtResource("2_hax5c")
+
+[node name="Orb4" type="Sprite2D" parent="."]
+scale = Vector2(0.440359, 0.440359)
+texture = ExtResource("2_hax5c")
+
+[node name="Orb5" type="Sprite2D" parent="."]
+scale = Vector2(0.197906, 0.211597)
+texture = ExtResource("2_hax5c")
+
+[node name="Orb6" type="Sprite2D" parent="."]
+scale = Vector2(0.0896998, 0.095338)
+texture = ExtResource("2_hax5c")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
